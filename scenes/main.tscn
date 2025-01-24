@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6yvvcv1qd8dy"]
+
+[ext_resource type="PackedScene" uid="uid://bornpu1t2v6ig" path="res://scenes/player.tscn" id="1_7qslv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3n85n"]
+normal = Vector2(1, 0)
+distance = -141.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pi1o8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jlfvy"]
+normal = Vector2(-1, 0)
+
+[node name="main" type="Node2D"]
+position = Vector2(7, -2)
+
+[node name="Player" parent="." instance=ExtResource("1_7qslv")]
+position = Vector2(5, -8)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-140, -18)
+shape = SubResource("WorldBoundaryShape2D_3n85n")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_pi1o8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(290, -15)
+shape = SubResource("WorldBoundaryShape2D_jlfvy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(4, -21)
+zoom = Vector2(2, 2)
