@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6yvvcv1qd8dy"]
+[gd_scene load_steps=8 format=3 uid="uid://b6yvvcv1qd8dy"]
 
 [ext_resource type="PackedScene" uid="uid://bornpu1t2v6ig" path="res://scenes/player.tscn" id="1_7qslv"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_x68hl"]
+[ext_resource type="PackedScene" uid="uid://b706lid0xp6m7" path="res://scenes/player_2.tscn" id="2_mkkm0"]
+[ext_resource type="PackedScene" uid="uid://km2p80clki2c" path="res://scenes/bubble.tscn" id="4_iduiq"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3n85n"]
 normal = Vector2(1, 0)
-distance = -141.0
+distance = -333.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pi1o8"]
 
@@ -13,14 +16,17 @@ normal = Vector2(-1, 0)
 
 [node name="main" type="Node2D"]
 position = Vector2(7, -2)
+script = ExtResource("1_x68hl")
+number_of_bodies = null
+spawn_range = null
 
 [node name="Player" parent="." instance=ExtResource("1_7qslv")]
-position = Vector2(5, -8)
+position = Vector2(-873, -15)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-140, -18)
+position = Vector2(-612, -31)
 shape = SubResource("WorldBoundaryShape2D_3n85n")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -31,9 +37,19 @@ shape = SubResource("WorldBoundaryShape2D_pi1o8")
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(290, -15)
+position = Vector2(962, -13)
 shape = SubResource("WorldBoundaryShape2D_jlfvy")
 
+[node name="Player2" parent="." instance=ExtResource("2_mkkm0")]
+position = Vector2(875, -41)
+
+[node name="bubble" parent="." instance=ExtResource("4_iduiq")]
+position = Vector2(-871, -635)
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(4, -21)
-zoom = Vector2(2, 2)
+position = Vector2(7, -159)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
