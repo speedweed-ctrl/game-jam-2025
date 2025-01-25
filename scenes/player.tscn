@@ -31,7 +31,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="Coyote" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 
 [connection signal="timeout" from="Jump buffer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Coyote" to="." method="_on_coyote_timeout"]

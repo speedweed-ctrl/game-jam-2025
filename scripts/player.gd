@@ -7,11 +7,11 @@ extends CharacterBody2D
 @export var jump_velocity = -500.0
 var can_jump : bool
 var can_coyote : bool
+var jump_counter := 1
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	velocity += get_gravity() * delta
 	
 	# Handle jump.
 	jump()
@@ -28,13 +28,19 @@ func _physics_process(delta: float) -> void:
 
 func jump() :
 	if not is_on_floor() and Input.is_action_just_pressed("player1_jump") :
-		timer.start()
-		can_jump = true
+		if jump_counter > 0 and (not can_coyote) :
+			velocity.y = jump_velocity
+			jump_counter -= 1
+		else :
+			timer.start()
+			can_jump = true
 	if is_on_floor() :
+		jump_counter = 1
 		coyote.start()
 		can_coyote = true
 	if can_coyote and can_jump :
 		velocity.y = jump_velocity
+		jump_counter = 1
 	if (Input.is_action_just_pressed("player1_jump") or can_jump) and is_on_floor():
 		velocity.y = jump_velocity
 
