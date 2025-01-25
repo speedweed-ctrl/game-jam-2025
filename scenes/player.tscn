@@ -7,6 +7,7 @@ size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rl7a2")
+jump_velocity = -400.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -24,3 +25,13 @@ grow_vertical = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_xl26x")
+
+[node name="Jump buffer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Coyote" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="Jump buffer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Coyote" to="." method="_on_coyote_timeout"]

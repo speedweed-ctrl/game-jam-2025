@@ -17,6 +17,8 @@ normal = Vector2(-1, 0)
 [node name="main" type="Node2D"]
 position = Vector2(7, -2)
 script = ExtResource("1_x68hl")
+number_of_bodies = null
+spawn_range = null
 
 [node name="Player" parent="." instance=ExtResource("1_7qslv")]
 position = Vector2(-873, -15)

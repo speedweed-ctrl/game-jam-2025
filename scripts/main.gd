@@ -10,16 +10,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	for i in range(number_of_bodies):
-		spawn_array[i].po
-		
+	pass
 
 @onready var rigid_body_scene : StaticBody2D = $bubble
 
 
 @export var number_of_bodies: int = 50
 @export var spawn_range: Vector2 = Vector2(600, 600)
-var spawn_array : <StaticBody2D>[] = []
 
 
 func spawn_rigid_body():
@@ -31,7 +28,7 @@ func spawn_rigid_body():
 		randi_range(-spawn_range.y,spawn_range.y)
 	)	 
 	instance.position = bubble_instance_position
-	spawn_array.append(instance)
+	#spawn_array.append(instance)
 	add_child(instance)
 	
 
